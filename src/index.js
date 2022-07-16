@@ -22,9 +22,7 @@ app.post("/cadastrarBebidas", (req, res) => {
     })
 })
 
-app.update("alterarTabela"), () => {
-    pool.execute("alter table railway")
-}
+
 
 
 app.listen(5791, () => {
