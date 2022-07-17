@@ -1,11 +1,24 @@
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const pool = mysql.createPool({
-    database: "railway", //seu database
-    host: "containers-us-west-76.railway.app", //seu host
-    password: "8kM1EPylBuhE5fBhwSyl", //seu password
-    port: 5791, //seu port ou porta
-    user: "root" //seu root
+    database:  process.env.DATABASE,
+    host: process.env.HOST,
+    password: process.env.PASS,
+    port: process.env.PORT,
+    user: process.env.USER
 })
+
+const tryConection = () => { 
+    pool.execute("SELECT NOW()", (err, result) => {
+    if(err){
+        console.warn(err.sqlMessage);
+        return;
+    }
+
+    console.log("conectado ao banco!")
+})}
+
+tryConection()
 
 module.exports = pool;
